@@ -10,17 +10,17 @@ public class SupervisedEvaluation {
             table[groundtruthAssignment[i]][algorithmAssignment[i]] += 1;
         }
 
-        int[] col = new int[k];
+        int[] colmax = new int[k];
         // find column maxima...
         for (int row = 0; row < k; ++row) {
             for (int b : table[row]) {
-                if (b > col[row]) {
-                    col[row] = b;
+                if (b > colmax[row]) {
+                    colmax[row] = b;
                 }
             }
         }
 
-        double res = Arrays.stream(col).reduce(0, (a, b) -> a + b);
+        double res = Arrays.stream(colmax).reduce(0, (a, b) -> a + b);
         return res / groundtruthAssignment.length;
     }
 
